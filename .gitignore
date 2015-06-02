@@ -1,0 +1,10 @@
+.idea/
+NovgorodApp.iml
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+.gradle
+build
+local.properties
+
