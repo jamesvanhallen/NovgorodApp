@@ -1,14 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:background="@drawable/border"
-    android:layout_height="200dp">
+    android:layout_height="100dp">
 
     <FrameLayout
         android:id="@+id/imagemaskframe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:padding="10dp" >
 
         <ImageView
@@ -25,7 +25,6 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:src="@mipmap/ic_launcher"
             android:scaleType="fitXY" />
 
 
@@ -35,22 +34,33 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/activity_horizontal_margin">
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:layout_toRightOf="@+id/imagemaskframe"
+        android:layout_toEndOf="@+id/imagemaskframe">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="8dp"
+            android:textSize="11dp"
+            android:textStyle="bold"
             android:text="Large Text"
             android:id="@+id/company_name" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="9dp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
             android:text="Medium Text"
             android:id="@+id/company_address" />
 
     </LinearLayout>
 
-</LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="5dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/my_gradient"/>
+
+</RelativeLayout>

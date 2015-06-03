@@ -1,7 +1,6 @@
-package com.james.novgorodapp;
+package com.james.novgorodapp.pojos;
 
 import java.util.List;
-
 import lombok.Data;
 
 @Data

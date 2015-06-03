@@ -1,6 +1,6 @@
-package com.james.novgorodapp;
+package com.james.novgorodapp.network;
 
-
+import com.james.novgorodapp.pojos.MyObject;
 
 import retrofit.Callback;
 import retrofit.http.Field;
@@ -8,10 +8,7 @@ import retrofit.http.FormUrlEncoded;
 import retrofit.http.Headers;
 import retrofit.http.POST;
 
-/**
- * Created by james on 02.06.15.
- */
-public interface NetworkConector {
+public interface NetworkConnector {
 
     @Headers("User-Agent: MOBILE")
     @FormUrlEncoded

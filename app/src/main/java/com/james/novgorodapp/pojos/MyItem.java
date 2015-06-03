@@ -1,11 +1,7 @@
-package com.james.novgorodapp;
+package com.james.novgorodapp.pojos;
 
 import lombok.Data;
 
-
-/**
- * Created by james on 02.06.15.
- */
 @Data
 public class MyItem {
     private String color;

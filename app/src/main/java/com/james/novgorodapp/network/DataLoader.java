@@ -1,20 +1,18 @@
-package com.james.novgorodapp;
+package com.james.novgorodapp.network;
 
+import com.james.novgorodapp.pojos.MyObject;
 import retrofit.Callback;
 import retrofit.RestAdapter;
 
-/**
- * Created by james on 02.06.15.
- */
 public class DataLoader {
     public static DataLoader sInstance;
-    private NetworkConector mConector;
+    private NetworkConnector mConnector;
 
     private DataLoader(){
         RestAdapter adapter = new RestAdapter.Builder()
                 .setEndpoint("http://basis.seldon.ru")
                 .build();
-        mConector = adapter.create(NetworkConector.class);
+        mConnector = adapter.create(NetworkConnector.class);
     }
 
     public static DataLoader get() {
@@ -27,6 +25,6 @@ public class DataLoader {
     }
 
     public void getItems(String searchstring, int pageindex, int  pagesize, Callback<MyObject> callback){
-        mConector.getItems(searchstring, pageindex, pagesize, callback);
+        mConnector.getItems(searchstring, pageindex, pagesize, callback);
     }
 }

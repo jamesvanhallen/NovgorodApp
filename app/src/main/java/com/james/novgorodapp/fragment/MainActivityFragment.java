@@ -1,17 +1,18 @@
-package com.james.novgorodapp;
+package com.james.novgorodapp.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
+import com.james.novgorodapp.network.DataLoader;
+import com.james.novgorodapp.adapter.MainAdapter;
+import com.james.novgorodapp.R;
+import com.james.novgorodapp.pojos.MyObject;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import retrofit.Callback;
@@ -54,6 +55,7 @@ public class MainActivityFragment extends Fragment implements SwipeRefreshLayout
 
             @Override
             public void failure(RetrofitError error) {
+                swipeLayout.setRefreshing(false);
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                 alert.setTitle("Error")
                      .setMessage(error.getMessage())

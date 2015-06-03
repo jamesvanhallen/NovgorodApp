@@ -1,4 +1,4 @@
-package com.james.novgorodapp;
+package com.james.novgorodapp.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,17 +9,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.james.novgorodapp.R;
+import com.james.novgorodapp.pojos.MyItem;
 import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 
-/**
- * Created by james on 02.06.15.
- */
 public class MainAdapter extends BaseAdapter {
     private List<MyItem> mItems = new ArrayList<>();
 
