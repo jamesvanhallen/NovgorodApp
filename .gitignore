@@ -7,4 +7,5 @@ settings.gradle
 .gradle
 build
 local.properties
-
+lombok.config
+app.iml

@@ -1,5 +1,7 @@
 package com.james.novgorodapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -33,29 +35,38 @@ public class MainActivityFragment extends Fragment implements SwipeRefreshLayout
         ma = new MainAdapter();
         lv.setAdapter(ma);
         swipeLayout.setOnRefreshListener(this);
-
-        DataLoader.get().getItems("", 1, 20, new Callback<MyObject>() {
-            @Override
-            public void success(MyObject myObject, Response response) {
-                ma.setItems(myObject.getResponse().getItems());
-            }
-
-            @Override
-            public void failure(RetrofitError error) {
-                Log.d("response", error.getMessage());
-            }
-        });
+        query();
         return v;
     }
 
     @Override
     public void onRefresh() {
-        new Handler().postDelayed(new Runnable() {
+        query();
+    }
+
+    public void query() {
+        DataLoader.get().getItems("", 1, 20, new Callback<MyObject>() {
             @Override
-            public void run() {
+            public void success(MyObject myObject, Response response) {
+                ma.setItems(myObject.getResponse().getItems());
                 swipeLayout.setRefreshing(false);
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                alert.setTitle("Error")
+                     .setMessage(error.getMessage())
+                     .setNegativeButton("Cancel",
+                             new DialogInterface.OnClickListener() {
+                                 public void onClick(DialogInterface dialog, int id) {
+                                     dialog.cancel();
+                                 }
+                             });
+                alert.create();
+                alert.show();
 
             }
-        }, 4000);
+        });
     }
 }

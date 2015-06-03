@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -72,8 +71,8 @@ public class MainAdapter extends BaseAdapter {
         TextView tvAddress;
         @InjectView(R.id.image)
         ImageView mImage;
-        @InjectView(R.id.image_back)
-        ImageView mback;
+        @InjectView(R.id.iv_mask_op)
+        ImageView mBack;
 
         public ViewHolder(View v) {
             ButterKnife.inject(this, v);
@@ -82,14 +81,14 @@ public class MainAdapter extends BaseAdapter {
         public void bind(Context context, MyItem item) {
             tvName.setText(item.getShortName());
             tvAddress.setText(item.getAddress());
+
             Picasso.with(context)
                     .load("http://basis.seldon.ru/Content/img/okved-sub-categories/112/"
                             + item.getOkvedId()
-                            +".png")
-
+                            + ".png")
                     .into(mImage);
             Log.d("tag", item.getColor());
-            mback.setBackgroundColor(Color.parseColor("#e83821"));
+            mBack.setColorFilter(Color.parseColor(item.getColor()));
         }
     }
 }
