@@ -1,6 +1,7 @@
 package com.james.novgorodapp.fragment;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,12 +28,16 @@ public class MainActivityFragment extends Fragment implements SwipeRefreshLayout
     SwipeRefreshLayout swipeLayout;
 
     private MainAdapter ma;
+    private ProgressDialog pd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.inject(this, v);
+        pd = new ProgressDialog(getActivity());
+        pd.show();
+        pd.setMessage("Loading");
         ma = new MainAdapter();
         lv.setAdapter(ma);
         swipeLayout.setOnRefreshListener(this);
@@ -51,11 +56,13 @@ public class MainActivityFragment extends Fragment implements SwipeRefreshLayout
             public void success(MyObject myObject, Response response) {
                 ma.setItems(myObject.getResponse().getItems());
                 swipeLayout.setRefreshing(false);
+                pd.dismiss();
             }
 
             @Override
             public void failure(RetrofitError error) {
                 swipeLayout.setRefreshing(false);
+                pd.dismiss();
                 AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
                 alert.setTitle("Error")
                      .setMessage(error.getMessage())
